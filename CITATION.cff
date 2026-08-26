@@ -1,0 +1,23 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite it as below."
+title: "HPC Dashboard: seeing what an HPC job actually used"
+abstract: >-
+  A desktop application that reads job telemetry from shared HPC storage over
+  SFTP and presents per-core utilisation, memory, I/O and GPU behaviour, plus
+  recommendations for future resource requests based on the scheduler's real
+  charging model. Reads files only; nothing runs on the cluster on the user's
+  behalf.
+type: software
+authors:
+  - given-names: Sam
+    family-names: Green
+    affiliation: "ARC Centre of Excellence for 21st Century Weather, UNSW Sydney"
+repository-code: "https://github.com/greensh16/hpc_dashboard_public"
+license: Apache-2.0
+version: 0.1.4
+keywords:
+  - high-performance computing
+  - job monitoring
+  - resource efficiency
+  - Tauri
+  - research software
