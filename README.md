@@ -17,15 +17,15 @@ the CPU you paid for, or that 30 of your 48 cores sat idle for six hours.
 **[⬇ Download the latest release](https://github.com/greensh16/hpc_dashboard_public/releases/latest)**
  · macOS, Windows, Linux
 
-📖 **[Documentation is in the wiki](https://github.com/greensh16/hpc_dashboard_public/wiki)**
+📖 **[Read the documentation](https://hpc-dash.au/docs/)**
 
 ---
 
 ## Getting started
 
-1. **[Install the app](https://github.com/greensh16/hpc_dashboard_public/wiki/Installing)** — download, open, dismiss one security warning.
-2. **[Add three lines to your job script](https://github.com/greensh16/hpc_dashboard_public/wiki/Collecting-Telemetry)** and submit it.
-3. **[Add a profile](https://github.com/greensh16/hpc_dashboard_public/wiki/Connecting-to-an-HPC)** pointing at where those logs land.
+1. **[Install the app](https://hpc-dash.au/docs/installing/)** — download, open, dismiss one security warning.
+2. **[Add three lines to your job script](https://hpc-dash.au/docs/collecting-telemetry/)** and submit it.
+3. **[Add a profile](https://hpc-dash.au/docs/connecting-to-an-hpc/)** pointing at where those logs land.
 4. Open the job and look at the **Cores** tab.
 
 **Step 2 is the one people skip.** The dashboard only reads files — something
@@ -48,21 +48,23 @@ xattr -cr "/Applications/HPC Dashboard.app"
 ```
 
 On Windows, click *More info* → *Run anyway*. See
-[Installing](https://github.com/greensh16/hpc_dashboard_public/wiki/Installing)
+[Installing](https://hpc-dash.au/docs/installing/)
 for the details.
 
 ## Documentation
 
 | | |
 |---|---|
-| [Installing](https://github.com/greensh16/hpc_dashboard_public/wiki/Installing) | Download, first run, updating |
-| [Collecting Telemetry](https://github.com/greensh16/hpc_dashboard_public/wiki/Collecting-Telemetry) | The three lines your job script needs |
-| [Connecting to an HPC](https://github.com/greensh16/hpc_dashboard_public/wiki/Connecting-to-an-HPC) | SSH keys and profiles |
-| [Reading a Job](https://github.com/greensh16/hpc_dashboard_public/wiki/Reading-a-Job) | What each tab shows |
-| [Advice and Recommendations](https://github.com/greensh16/hpc_dashboard_public/wiki/Advice-and-Recommendations) | What to request next time, and why two obvious savings aren't real |
-| [Comparing Jobs](https://github.com/greensh16/hpc_dashboard_public/wiki/Comparing-Jobs) | Two runs side by side |
-| [Troubleshooting](https://github.com/greensh16/hpc_dashboard_public/wiki/Troubleshooting) | Connection failures, empty job lists, missing charts |
-| [FAQ](https://github.com/greensh16/hpc_dashboard_public/wiki/FAQ) | Privacy, cost, what it does and does not do |
+| [Installing](https://hpc-dash.au/docs/installing/) | Download, first run, updating |
+| [Collecting Telemetry](https://hpc-dash.au/docs/collecting-telemetry/) | The three lines your job script needs |
+| [Connecting to an HPC](https://hpc-dash.au/docs/connecting-to-an-hpc/) | SSH keys and profiles |
+| [Reading a Job](https://hpc-dash.au/docs/reading-a-job/) | What each tab shows |
+| [Advice and Recommendations](https://hpc-dash.au/docs/advice-and-recommendations/) | What to request next time, and why two obvious savings aren't real |
+| [Comparing Jobs](https://hpc-dash.au/docs/comparing-jobs/) | Two runs side by side |
+| [Troubleshooting](https://hpc-dash.au/docs/troubleshooting/) | Connection failures, empty job lists, missing charts |
+| [FAQ](https://hpc-dash.au/docs/faq/) | Privacy, cost, what it does and does not do |
+
+The website documentation is built from [this repository’s wiki](https://github.com/greensh16/hpc_dashboard_public/wiki).
 
 ## Issues
 
