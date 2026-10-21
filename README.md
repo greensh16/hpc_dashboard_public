@@ -24,7 +24,7 @@ the CPU you paid for, or that 30 of your 48 cores sat idle for six hours.
 ## Getting started
 
 1. **[Install the app](https://hpc-dash.au/docs/installing/)** — download, open, dismiss one security warning.
-2. **[Add three lines to your job script](https://hpc-dash.au/docs/collecting-telemetry/)** and submit it.
+2. **[Add telemetry to your job script](https://hpc-dash.au/docs/collecting-telemetry/)** and submit it.
 3. **[Add a profile](https://hpc-dash.au/docs/connecting-to-an-hpc/)** pointing at where those logs land.
 4. Open the job and look at the **Cores** tab.
 
@@ -56,7 +56,7 @@ for the details.
 | | |
 |---|---|
 | [Installing](https://hpc-dash.au/docs/installing/) | Download, first run, updating |
-| [Collecting Telemetry](https://hpc-dash.au/docs/collecting-telemetry/) | The three lines your job script needs |
+| [Collecting Telemetry](https://hpc-dash.au/docs/collecting-telemetry/) | Set up logger-rs and mark the measured workload |
 | [Connecting to an HPC](https://hpc-dash.au/docs/connecting-to-an-hpc/) | SSH keys and profiles |
 | [Reading a Job](https://hpc-dash.au/docs/reading-a-job/) | What each tab shows |
 | [Advice and Recommendations](https://hpc-dash.au/docs/advice-and-recommendations/) | What to request next time, and why two obvious savings aren't real |
