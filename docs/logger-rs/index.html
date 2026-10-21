@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#0a1018" />
+    <meta name="description" content="Download logger-rs and read its documentation. Collect CPU, memory, disk, network and GPU telemetry from HPC jobs for HPC Dashboard." />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="logger-rs — HPC job telemetry" />
+    <meta property="og:description" content="Download the Linux release and learn to collect HPC job telemetry with logger-rs." />
+    <meta property="og:url" content="https://hpc-dash.au/logger-rs/" />
+    <meta property="og:image" content="https://hpc-dash.au/logo-social.png" />
+    <link rel="canonical" href="https://hpc-dash.au/logger-rs/" />
+    <link rel="icon" href="/favicon.png" type="image/png" />
+    <link rel="stylesheet" href="/styles.css" />
+    <link rel="stylesheet" href="/logger-rs.css" />
+    <title>logger-rs — HPC job telemetry</title>
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <header class="site-header"><div class="wrap header-inner">
+      <a class="brand" href="/" aria-label="HPC Dashboard home"><img class="brand-icon" src="/logo.png" alt="" aria-hidden="true" /><span>HPC<span class="brand-light"> Dashboard</span></span></a>
+      <nav class="nav" aria-label="Main navigation"><a href="/">Dashboard</a><a href="/logger-rs/" aria-current="page">logger-rs</a><a href="/logger-rs/docs/">Docs</a><a href="https://github.com/greensh16/logger-rs">GitHub <span aria-hidden="true">↗</span></a></nav>
+      <a class="header-cta" href="#download">Download <span aria-hidden="true">↓</span></a>
+    </div></header>
+    <main id="main">
+      <section class="logger-hero"><div class="wrap logger-hero-grid">
+        <div><p class="eyebrow"><span class="live-dot" aria-hidden="true"></span> The telemetry behind HPC Dashboard</p><h1>Measure the work <em>inside your job.</em></h1><p class="logger-lead">logger-rs records what your HPC job actually uses, from individual CPU cores to memory, I/O, network and GPUs. It writes files that HPC Dashboard reads directly, with no service to run on the cluster.</p><div class="hero-actions"><a class="button button-primary" href="#download">Get logger-rs <span aria-hidden="true">↓</span></a><a class="button button-secondary" href="/logger-rs/docs/">Read the documentation <span aria-hidden="true">↗</span></a></div><p class="hero-note">Open source · Apache 2.0 · Linux x86-64 · cgroup v1 &amp; v2</p></div>
+        <div class="logger-terminal" aria-label="Example PBS job script"><div class="logger-terminal-bar"><span><i></i><i></i><i></i></span><strong>job.pbs</strong></div><pre><code><span class="code-muted"># Your existing PBS job script</span>
+<span class="code-accent">module load</span> logger-rs
+<span class="code-accent">source</span> logger-rs.sh
+
+<span class="code-accent">telemetry_start</span>
+mpirun -np "$PBS_NCPUS" ./my_model
+<span class="code-accent">telemetry_stop</span></code></pre><p>Two lines mark the work you want measured.</p></div>
+      </div></section>
+      <section class="logger-strip"><div class="wrap logger-facts"><div><strong>01</strong><span>Per-node collection</span></div><div><strong>02</strong><span>Multi-node summaries</span></div><div><strong>03</strong><span>Works with HPC Dashboard</span></div></div></section>
+      <section class="section logger-download-section" id="download" aria-labelledby="download-title"><div class="wrap"><p class="section-kicker">DOWNLOAD</p><h2 id="download-title">Choose your setup.</h2><p class="logger-section-lead">On Gadi, use the shared module. For another Linux x86-64 cluster, download the release package and follow the deployment guide.</p><div class="logger-download-grid">
+        <article class="logger-card"><span class="logger-card-label">GADI USERS</span><h3>Use the shared module</h3><p>logger-rs is already available in the shared project directory. Add the module path, load it, then source the shell library in your job script.</p><pre><code>module use /g/data/gb02/modules
+module load logger-rs
+source logger-rs.sh</code></pre><a class="text-link" href="/logger-rs/docs/quick-start/">Follow the quick start <span aria-hidden="true">↗</span></a></article>
+        <article class="logger-card logger-card-release"><span class="logger-card-label">OTHER LINUX CLUSTERS</span><h3>Download version {{LOGGER_VERSION}}</h3><p>The package includes the static x86-64 Linux binary, matching shell library, example job script, modulefile, licence and changelog.</p><a class="button button-primary" href="{{LOGGER_ARCHIVE}}" download>Download Linux package <span aria-hidden="true">↓</span></a><p class="logger-file-note">tar.gz · {{LOGGER_SIZE}} · <a href="{{LOGGER_CHECKSUM}}" download>SHA256 checksum</a></p><a class="text-link" href="/logger-rs/docs/building-and-deployment/">Read the deployment guide <span aria-hidden="true">↗</span></a></article>
+      </div><p class="logger-platform-note">The release package targets Linux x86-64. Other platforms can build from <a href="https://github.com/greensh16/logger-rs">source</a>; telemetry collection requires Linux cgroups.</p></div></section>
+      <section class="section logger-docs-section" aria-labelledby="logger-docs-title"><div class="wrap logger-docs-grid"><div><p class="section-kicker">DOCUMENTATION</p><h2 id="logger-docs-title">From first run to full detail.</h2><p>Read the logger-rs wiki here, including installation, metrics, multi-node jobs and the output format used by HPC Dashboard.</p><a class="button button-secondary" href="/logger-rs/docs/">Browse all logger-rs docs <span aria-hidden="true">↗</span></a></div><div class="logger-doc-links"><a href="/logger-rs/docs/quick-start/"><span>01</span><strong>Quick Start</strong><span aria-hidden="true">↗</span></a><a href="/logger-rs/docs/metrics/"><span>02</span><strong>Metrics</strong><span aria-hidden="true">↗</span></a><a href="/logger-rs/docs/multi-node-jobs/"><span>03</span><strong>Multi-Node Jobs</strong><span aria-hidden="true">↗</span></a><a href="/logger-rs/docs/troubleshooting/"><span>04</span><strong>Troubleshooting</strong><span aria-hidden="true">↗</span></a></div></div></section>
+    </main>
+    <footer class="footer"><div class="wrap"><div class="footer-top"><div><a class="brand" href="/"><img class="brand-icon" src="/logo.png" alt="" aria-hidden="true" /><span>HPC<span class="brand-light"> Dashboard</span></span></a><p>See what your jobs actually used.</p></div><div class="footer-links"><a href="/">Dashboard</a><a href="/logger-rs/">logger-rs</a><a href="/logger-rs/docs/">Documentation</a><a href="https://github.com/greensh16/logger-rs/releases/latest">GitHub releases</a><a href="https://github.com/greensh16/logger-rs/issues">Report an issue</a></div></div><div class="footer-bottom"><span>© 2026 Sam Green · Apache 2.0</span><span>Developed at the ARC Centre of Excellence for 21st Century Weather, UNSW Sydney.</span></div></div></footer>
+  </body>
+</html>

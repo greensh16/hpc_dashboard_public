@@ -20,10 +20,29 @@ from markdown.treeprocessors import Treeprocessor
 
 WIKI_URL = "https://github.com/greensh16/hpc_dashboard_public/wiki"
 SITE_URL = "https://hpc-dash.au"
+DOCS_ROOT = "/docs/"
+PRODUCT_NAME = "HPC Dashboard"
+PRODUCT_HOME = "/"
+DOWNLOAD_URL = "https://github.com/greensh16/hpc_dashboard_public/releases/latest"
+ISSUES_URL = "https://github.com/greensh16/hpc_dashboard_public/issues"
+
+
+def configure(project: str) -> None:
+    global WIKI_URL, DOCS_ROOT, PRODUCT_NAME, PRODUCT_HOME, DOWNLOAD_URL, ISSUES_URL
+    if project == "dashboard":
+        return
+    if project != "logger-rs":
+        raise ValueError(f"Unknown documentation project: {project}")
+    WIKI_URL = "https://github.com/greensh16/logger-rs/wiki"
+    DOCS_ROOT = "/logger-rs/docs/"
+    PRODUCT_NAME = "logger-rs"
+    PRODUCT_HOME = "/logger-rs/"
+    DOWNLOAD_URL = "/logger-rs/#download"
+    ISSUES_URL = "https://github.com/greensh16/logger-rs/issues"
 
 
 def page_url(stem: str) -> str:
-    return "/docs/" if stem == "Home" else f"/docs/{stem.lower()}/"
+    return DOCS_ROOT if stem == "Home" else f"{DOCS_ROOT}{stem.lower()}/"
 
 
 class RewriteWikiLinks(Treeprocessor):
@@ -51,7 +70,7 @@ class RewriteWikiLinks(Treeprocessor):
         if match:
             return page_url(match) + suffix
         if path in self.assets:
-            return "/docs/" + quote(path, safe="/-._~") + suffix
+            return DOCS_ROOT + quote(path, safe="/-._~") + suffix
         raise ValueError(f"Wiki link target does not exist: {address}")
 
 
@@ -97,40 +116,44 @@ def render_nav(sections: list[tuple[str, list[tuple[str, str]]]], current: str) 
 def render_page(stem: str, body: str, nav: str, prev_next: str) -> str:
     title = "Documentation" if stem == "Home" else stem.replace("-", " ")
     page_address = SITE_URL + page_url(stem)
+    if PRODUCT_NAME == "logger-rs":
+        top_nav = f'<a href="/">Dashboard</a><a href="/logger-rs/">logger-rs</a><a href="{DOCS_ROOT}" aria-current="page">Docs</a><a href="{WIKI_URL}">GitHub wiki <span aria-hidden="true">↗</span></a>'
+    else:
+        top_nav = f'<a href="/">Overview</a><a href="{DOCS_ROOT}" aria-current="page">Docs</a><a href="{WIKI_URL}">GitHub wiki <span aria-hidden="true">↗</span></a>'
     return f'''<!doctype html>
 <html lang="en">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="theme-color" content="#0a1018" />
-    <meta name="description" content="{html.escape(title)} — HPC Dashboard documentation." />
+    <meta name="description" content="{html.escape(title)} — {PRODUCT_NAME} documentation." />
     <link rel="canonical" href="{page_address}" />
     <meta property="og:type" content="article" />
-    <meta property="og:title" content="{html.escape(title)} — HPC Dashboard" />
+    <meta property="og:title" content="{html.escape(title)} — {PRODUCT_NAME}" />
     <meta property="og:url" content="{page_address}" />
     <link rel="icon" href="/favicon.png" type="image/png" />
     <link rel="stylesheet" href="/styles.css" />
     <link rel="stylesheet" href="/docs.css" />
-    <title>{html.escape(title)} — HPC Dashboard</title>
+    <title>{html.escape(title)} — {PRODUCT_NAME}</title>
   </head>
   <body class="docs-page">
     <a class="skip-link" href="#main">Skip to content</a>
     <header class="site-header"><div class="wrap header-inner">
       <a class="brand" href="/" aria-label="HPC Dashboard home"><img class="brand-icon" src="/logo.png" alt="" aria-hidden="true" /><span>HPC<span class="brand-light"> Dashboard</span></span></a>
-      <nav class="nav" aria-label="Main navigation"><a href="/">Overview</a><a href="/docs/" aria-current="page">Docs</a><a href="{WIKI_URL}">GitHub wiki <span aria-hidden="true">↗</span></a></nav>
-      <a class="header-cta" href="https://github.com/greensh16/hpc_dashboard_public/releases/latest">Download <span aria-hidden="true">↗</span></a>
+      <nav class="nav" aria-label="Main navigation">{top_nav}</nav>
+      <a class="header-cta" href="{DOWNLOAD_URL}">Download <span aria-hidden="true">↗</span></a>
     </div></header>
     <main id="main" class="docs-shell wrap">
       <aside class="docs-sidebar"><nav aria-label="Documentation">{nav}</nav><a class="docs-source" href="{WIKI_URL}/{stem}">View source on GitHub ↗</a></aside>
       <div class="docs-content">
         <details class="docs-mobile-nav"><summary>Browse documentation</summary><nav aria-label="Documentation">{nav}</nav></details>
-        <p class="docs-breadcrumb"><a href="/">HPC Dashboard</a><span aria-hidden="true">/</span><a href="/docs/">Docs</a>{'' if stem == 'Home' else '<span aria-hidden="true">/</span>' + html.escape(title)}</p>
+        <p class="docs-breadcrumb"><a href="{PRODUCT_HOME}">{PRODUCT_NAME}</a><span aria-hidden="true">/</span><a href="{DOCS_ROOT}">Docs</a>{'' if stem == 'Home' else '<span aria-hidden="true">/</span>' + html.escape(title)}</p>
         <article class="docs-article">{body}</article>
         <nav class="docs-pagination" aria-label="Documentation pages">{prev_next}</nav>
         <p class="docs-edit">Found an error? <a href="{WIKI_URL}/{stem}/_edit">Edit this page on GitHub ↗</a></p>
       </div>
     </main>
-    <footer class="footer"><div class="wrap footer-bottom docs-footer"><span>© 2026 Sam Green · Apache 2.0</span><span><a href="/">Home</a> · <a href="{WIKI_URL}">GitHub wiki</a> · <a href="https://github.com/greensh16/hpc_dashboard_public/issues">Report an issue</a></span></div></footer>
+    <footer class="footer"><div class="wrap footer-bottom docs-footer"><span>© 2026 Sam Green · Apache 2.0</span><span><a href="/">Home</a> · <a href="{WIKI_URL}">GitHub wiki</a> · <a href="{ISSUES_URL}">Report an issue</a></span></div></footer>
   </body>
 </html>
 '''
@@ -145,7 +168,7 @@ def build(wiki_dir: Path, site_dir: Path) -> None:
     assets = {path.relative_to(wiki_dir).as_posix() for path in asset_files}
     sections = sidebar_entries((wiki_dir / "_Sidebar.md").read_text(encoding="utf-8"), pages)
     order = [stem for _, links in sections for _, stem in links]
-    docs_dir = site_dir / "docs"
+    docs_dir = site_dir / DOCS_ROOT.strip("/")
     docs_dir.mkdir(parents=True, exist_ok=True)
     for asset in asset_files:
         target = docs_dir / asset.relative_to(wiki_dir)
@@ -165,6 +188,7 @@ def build(wiki_dir: Path, site_dir: Path) -> None:
 
 
 if __name__ == "__main__":
-    if len(sys.argv) != 3:
-        raise SystemExit("Usage: build_docs.py WIKI_CHECKOUT SITE_OUTPUT")
+    if len(sys.argv) not in (3, 4):
+        raise SystemExit("Usage: build_docs.py WIKI_CHECKOUT SITE_OUTPUT [dashboard|logger-rs]")
+    configure(sys.argv[3] if len(sys.argv) == 4 else "dashboard")
     build(Path(sys.argv[1]), Path(sys.argv[2]))
