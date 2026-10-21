@@ -7,7 +7,7 @@
 [![Platforms](https://img.shields.io/badge/platforms-macOS%20%7C%20Windows%20%7C%20Linux-lightgrey.svg)](https://github.com/greensh16/hpc_dashboard_public/releases/latest)
 [![logger-rs](https://img.shields.io/badge/needs-logger--rs-orange.svg)](https://github.com/greensh16/logger-rs)
 
-**[Visit the HPC Dashboard website](https://greensh16.github.io/hpc_dashboard_public/)**
+**[Visit the HPC Dashboard website](https://www.sgreen.au/hpc_dashboard_public/)**
 
 See what your HPC jobs actually used — not what you booked.
 
