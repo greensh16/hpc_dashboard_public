@@ -125,7 +125,7 @@ def render_page(stem: str, body: str, nav: str, prev_next: str) -> str:
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="theme-color" content="#0a1018" />
+    <meta name="theme-color" content="#f7f6f2" />
     <meta name="description" content="{html.escape(title)} — {PRODUCT_NAME} documentation." />
     <link rel="canonical" href="{page_address}" />
     <meta property="og:type" content="article" />

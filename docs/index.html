@@ -3,118 +3,89 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="theme-color" content="#0a1018" />
-    <meta name="description" content="HPC Dashboard shows what your Gadi jobs actually used. Explore live CPU, memory, disk, network and GPU telemetry, compare runs, and make better resource requests." />
+    <meta name="theme-color" content="#f7f6f2" />
+    <meta name="description" content="HPC Dashboard and logger-rs show what your HPC jobs actually used. Inspect live and completed runs, compare results, and plan better resource requests." />
     <meta property="og:type" content="website" />
-    <meta property="og:title" content="HPC Dashboard — see what your jobs actually used" />
-    <meta property="og:description" content="A free desktop app for understanding your HPC jobs, from per-core utilisation to practical resource advice." />
+    <meta property="og:title" content="HPC Dashboard — understand what your jobs used" />
+    <meta property="og:description" content="Open source tools for collecting and understanding HPC job telemetry." />
     <meta property="og:url" content="https://hpc-dash.au/" />
-    <link rel="canonical" href="https://hpc-dash.au/" />
     <meta property="og:image" content="https://hpc-dash.au/logo-social.png" />
-    <meta name="twitter:card" content="summary" />
-    <link rel="icon" href="favicon.png" type="image/png" />
-    <link rel="apple-touch-icon" href="logo-social.png" />
-    <link rel="stylesheet" href="styles.css" />
-    <script src="script.js" defer></script>
-    <title>HPC Dashboard — see what your jobs actually used</title>
+    <link rel="canonical" href="https://hpc-dash.au/" />
+    <link rel="icon" href="/favicon.png" type="image/png" />
+    <link rel="apple-touch-icon" href="/logo-social.png" />
+    <link rel="stylesheet" href="/styles.css" />
+    <title>HPC Dashboard — understand what your jobs used</title>
   </head>
   <body>
     <a class="skip-link" href="#main">Skip to content</a>
     <header class="site-header">
       <div class="wrap header-inner">
-        <a class="brand" href="#top" aria-label="HPC Dashboard home">
-          <img class="brand-icon" src="logo.png" alt="" aria-hidden="true" />
-          <span>HPC<span class="brand-light"> Dashboard</span></span>
-        </a>
+        <a class="brand" href="/" aria-label="HPC Dashboard home"><img src="/logo.png" alt="" /><span>HPC Dashboard</span></a>
         <nav class="nav" aria-label="Main navigation">
-          <a href="#why">Why it matters</a>
-          <a href="#features">Features</a>
-          <a href="#getting-started">Get started</a>
-          <a href="/docs/">Docs <span aria-hidden="true">↗</span></a>
-          <a href="/logger-rs/">logger-rs <span aria-hidden="true">↗</span></a>
+          <a href="#how-it-works">How it works</a>
+          <a href="#inside">Inside the app</a>
+          <a href="/logger-rs/">logger-rs</a>
+          <a href="/docs/">Documentation</a>
         </nav>
-        <a class="header-cta" href="https://github.com/greensh16/hpc_dashboard_public/releases/latest">Download <span aria-hidden="true">↗</span></a>
+        <a class="header-cta" href="https://github.com/greensh16/hpc_dashboard_public/releases/latest">Download dashboard <span aria-hidden="true">↗</span></a>
       </div>
     </header>
 
     <main id="main">
-      <section class="hero" id="top" aria-labelledby="hero-title">
-        <div class="hero-glow" aria-hidden="true"></div>
-        <div class="wrap hero-grid">
-          <div class="hero-copy">
-            <p class="eyebrow"><span class="live-dot" aria-hidden="true"></span> Resource insight for research computing</p>
-            <h1 id="hero-title">See what your HPC jobs <em>actually used.</em></h1>
-            <p class="hero-lead">Your scheduler knows what you requested. HPC Dashboard shows what happened: where your cores, memory and GPUs went, while the job runs and after it finishes.</p>
-            <div class="hero-actions">
-              <a class="button button-primary" href="https://github.com/greensh16/hpc_dashboard_public/releases/latest">Download the app <span aria-hidden="true">↗</span></a>
-              <a class="button button-secondary" href="#getting-started">How it works <span aria-hidden="true">↓</span></a>
+      <section class="hero" aria-labelledby="hero-title">
+        <div class="wrap">
+          <div class="hero-intro">
+            <div>
+              <p class="eyebrow">OPEN SOURCE TOOLS FOR RESEARCH COMPUTING</p>
+              <h1 id="hero-title">Know what your jobs <span>actually used.</span></h1>
             </div>
-            <p class="hero-note">Free desktop app · macOS, Windows &amp; Linux · PBS today · SLURM in development</p>
+            <div class="hero-aside">
+              <p>HPC Dashboard turns job telemetry into a clear account of where your CPU time, memory, storage and GPUs went. Inspect a run while it is active, or return to it when you are planning the next one.</p>
+              <div class="hero-actions"><a class="button button-primary" href="https://github.com/greensh16/hpc_dashboard_public/releases/latest">Download the desktop app <span aria-hidden="true">↗</span></a><a class="text-link" href="#how-it-works">How it works <span aria-hidden="true">↓</span></a></div>
+              <p class="small-note">macOS, Windows and Linux · logger-rs validated on Gadi and Setonix</p>
+            </div>
           </div>
+          <figure class="primary-screen">
+            <a href="/images/summary.webp" aria-label="Open the full dashboard summary screenshot"><picture><source media="(max-width: 680px)" srcset="/images/summary-mobile.webp" width="900" height="540" /><img src="/images/summary.webp" width="1800" height="700" alt="Actual HPC Dashboard whole-run summary showing CPU efficiency, walltime, node coverage and resource totals." fetchpriority="high" /></picture></a>
+            <figcaption><span>01 / The dashboard</span><span>Whole-run summary from a recorded research job · open full size ↗</span></figcaption>
+          </figure>
+        </div>
+      </section>
 
-          <div class="product-frame" role="img" aria-label="Illustrative HPC Dashboard view showing a job's CPU, memory and per-core use">
-            <div class="window-bar"><span class="traffic-lights" aria-hidden="true"><i></i><i></i><i></i></span><span>HPC Dashboard <span class="window-separator">/</span> Job overview</span><span class="window-live"><i></i> LIVE</span></div>
-            <div class="product-body">
-              <div class="product-sidebar" aria-hidden="true"><img class="product-logo" src="logo.png" alt="" /><span class="side-icon selected">▦</span><span class="side-icon">◫</span><span class="side-icon">▤</span><span class="side-icon">⚙</span></div>
-              <div class="product-content">
-                <div class="product-topline"><div><span class="tiny-label">GADI / JOB 12847392</span><strong>Climate model run</strong></div><span class="status-pill"><i></i> Running</span></div>
-                <div class="metric-row">
-                  <div class="metric"><span>CPU EFFICIENCY</span><strong>37<span>%</span></strong><small>of requested capacity</small></div>
-                  <div class="metric"><span>MEMORY PEAK</span><strong>112<span> GB</span></strong><small>of 192 GB requested</small></div>
-                  <div class="metric"><span>NODES</span><strong>2<span> / 2</span></strong><small>reporting telemetry</small></div>
-                </div>
-                <div class="chart-panel"><div class="chart-heading"><div><span class="tiny-label">RESOURCE USAGE</span><strong>CPU over time</strong></div><div class="chart-legend"><span><i class="legend-orange"></i> Used</span><span><i class="legend-dash"></i> Requested</span></div></div>
-                  <svg class="line-chart" viewBox="0 0 620 156" role="img" aria-label="Illustrative CPU usage line below requested capacity"><defs><linearGradient id="chartFill" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#f3a73e" stop-opacity=".26"/><stop offset="100%" stop-color="#f3a73e" stop-opacity="0"/></linearGradient></defs><path class="grid-line" d="M0 28H620 M0 76H620 M0 124H620"/><path class="request-line" d="M0 28H620"/><path fill="url(#chartFill)" d="M0 112 L25 108 46 100 68 105 90 82 115 87 139 74 163 83 188 79 210 91 230 65 250 72 272 79 295 67 318 80 340 73 361 62 382 75 405 71 426 83 447 68 470 77 491 65 514 73 537 62 558 71 580 60 600 66 620 59 V156 H0Z"/><path class="usage-line" d="M0 112 L25 108 46 100 68 105 90 82 115 87 139 74 163 83 188 79 210 91 230 65 250 72 272 79 295 67 318 80 340 73 361 62 382 75 405 71 426 83 447 68 470 77 491 65 514 73 537 62 558 71 580 60 600 66 620 59"/></svg>
-                  <div class="chart-axis"><span>00:00</span><span>01:00</span><span>02:00</span><span>03:00</span><span>04:00</span></div>
-                </div>
-                <div class="core-panel"><div class="core-heading"><div><span class="tiny-label">GO DEEPER</span><strong>Per-core utilisation</strong></div><span>48 cores</span></div><div class="core-bars" aria-hidden="true"><i style="--h:83%"></i><i style="--h:91%"></i><i style="--h:77%"></i><i style="--h:87%"></i><i style="--h:97%"></i><i style="--h:68%"></i><i style="--h:88%"></i><i style="--h:74%"></i><i style="--h:92%"></i><i style="--h:84%"></i><i style="--h:96%"></i><i style="--h:72%"></i><i style="--h:86%"></i><i style="--h:91%"></i><i style="--h:78%"></i><i style="--h:85%"></i><i style="--h:93%"></i><i style="--h:81%"></i><i style="--h:17%"></i><i style="--h:11%"></i><i style="--h:22%"></i><i style="--h:9%"></i><i style="--h:15%"></i><i style="--h:18%"></i><i style="--h:8%"></i><i style="--h:24%"></i><i style="--h:13%"></i><i style="--h:20%"></i><i style="--h:6%"></i><i style="--h:17%"></i><i style="--h:12%"></i><i style="--h:10%"></i><i style="--h:19%"></i><i style="--h:7%"></i><i style="--h:14%"></i><i style="--h:21%"></i><i style="--h:12%"></i><i style="--h:8%"></i><i style="--h:19%"></i><i style="--h:11%"></i><i style="--h:16%"></i><i style="--h:5%"></i><i style="--h:22%"></i><i style="--h:9%"></i><i style="--h:14%"></i><i style="--h:18%"></i><i style="--h:10%"></i><i style="--h:15%"></i></div></div>
-              </div>
-            </div>
-            <span class="mock-label">Illustrative dashboard view</span>
+      <section class="section workflow-section" id="how-it-works" aria-labelledby="workflow-title">
+        <div class="wrap section-grid">
+          <div class="section-intro"><p class="eyebrow">TWO TOOLS, ONE WORKFLOW</p><h2 id="workflow-title">Measure the job.<br />Read the evidence.</h2><p>logger-rs collects resource use inside a job. Its current release has been tested on PBS/Gadi and Slurm/Setonix. HPC Dashboard reads the resulting files over SSH or from a local mount. There is no cluster-side service or database to maintain.</p></div>
+          <div class="workflow-list">
+            <div class="workflow-row"><span class="row-number">01</span><div><h3>Collect with logger-rs</h3><p>Add the shell library to your job script and mark the part of the workload you want measured. The collector writes telemetry to shared storage.</p><a class="text-link" href="/logger-rs/">Meet logger-rs <span aria-hidden="true">↗</span></a></div></div>
+            <div class="workflow-row"><span class="row-number">02</span><div><h3>Explore in HPC Dashboard</h3><p>Open a running or completed job to inspect CPU, memory, disk, network and GPU data by node and over time.</p><a class="text-link" href="/docs/">Read the dashboard guide <span aria-hidden="true">↗</span></a></div></div>
+            <div class="workflow-row"><span class="row-number">03</span><div><h3>Use it for the next run</h3><p>Compare jobs and check the evidence before changing a resource request or investigating a bottleneck.</p><a class="text-link" href="/docs/advice-and-recommendations/">See how advice works <span aria-hidden="true">↗</span></a></div></div>
           </div>
         </div>
       </section>
 
-      <section class="trust-strip" aria-label="Product facts"><div class="wrap trust-grid"><div><strong>01</strong><span>Live &amp; finished jobs</span></div><div><strong>02</strong><span>Per-core visibility</span></div><div><strong>03</strong><span>Local desktop app</span></div><div><strong>04</strong><span>No cluster-side service</span></div></div></section>
+      <section class="section inside-section" id="inside" aria-labelledby="inside-title">
+        <div class="wrap">
+          <div class="section-heading"><div><p class="eyebrow">INSIDE THE APPLICATION</p><h2 id="inside-title">The details behind a useful answer.</h2></div><p>These are captures from the dashboard itself. The charts and advice are based on recorded job data.</p></div>
+          <div class="screen-grid">
+            <figure class="screen-figure"><div class="screen-image"><a href="/images/throughput.webp" aria-label="Open the full disk throughput screenshot"><img src="/images/throughput.webp" width="1800" height="700" loading="lazy" alt="HPC Dashboard disk throughput view with read and write rates plotted over time." /></a></div><figcaption><strong>Follow changes through a run</strong><span>Time series help distinguish a steady workload from a bottleneck or phase change.</span></figcaption></figure>
+            <figure class="screen-figure"><div class="screen-image"><a href="/images/advice.webp" aria-label="Open the full advice screenshot"><img src="/images/advice.webp" width="1800" height="700" loading="lazy" alt="HPC Dashboard advice explaining that low average CPU efficiency does not necessarily mean idle cores and flagging a memory risk." /></a></div><figcaption><strong>Read the advice in context</strong><span>The app explains what the measurements suggest and where the evidence has limits.</span></figcaption></figure>
+          </div>
+        </div>
+      </section>
 
-      <section class="section problem-section" id="why" aria-labelledby="why-title"><div class="wrap problem-grid"><div><p class="section-kicker">THE QUESTION BEHIND THE BILL</p><h2 id="why-title">37% CPU efficiency.<br /><span>Now what?</span></h2><p>A single average cannot tell you what to change. Were some cores fully busy while others sat idle? Or was every core waiting on I/O? Those lead to very different next runs.</p><a class="text-link" href="/docs/advice-and-recommendations/">Explore the advice guide <span aria-hidden="true">↗</span></a></div><div class="comparison-card"><div class="scenario"><div><span class="scenario-index">A / IDLE CORES</span><h3>A smaller request may help.</h3><p>Some cores do the work. The rest barely move.</p></div><div class="scenario-bars idle" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div></div><div class="scenario"><div><span class="scenario-index">B / EVERY CORE WAITS</span><h3>Find the bottleneck first.</h3><p>All cores are active at a similar, lower level.</p></div><div class="scenario-bars waiting" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div></div><p class="comparison-foot">Same job-level average. Different decisions.</p></div></div></section>
+      <section class="section start-section" id="getting-started" aria-labelledby="start-title"><div class="wrap section-grid"><div class="section-intro"><p class="eyebrow">GETTING STARTED</p><h2 id="start-title">Start with a job script you already have.</h2><p>On Gadi, the logger is available as a shared module. Add two commands around the part of the job you want to study, then point the desktop app at the resulting logs.</p><a class="button button-secondary" href="/docs/collecting-telemetry/">Read the setup guide <span aria-hidden="true">↗</span></a></div><div class="code-example"><div class="code-header"><span>job.pbs</span><span>PBS / Gadi example</span></div><pre><code>module use /g/data/gb02/modules
+module load logger-rs
+source logger-rs.sh
 
-      <section class="section features-section" id="features" aria-labelledby="features-title"><div class="wrap"><div class="section-heading"><div><p class="section-kicker">FROM TELEMETRY TO A DECISION</p><h2 id="features-title">See the whole run.<br /><span>Understand the details.</span></h2></div><p>Read your job at a glance, then follow the evidence down to individual cores and nodes.</p></div><div class="feature-grid"><article class="feature-card feature-large"><span class="feature-number">01 / LIVE VIEW</span><div class="feature-visual pulse-visual" aria-hidden="true"><span class="pulse-line"></span><span class="pulse-line second"></span></div><h3>Watch jobs as they run</h3><p>Follow CPU, memory, disk, network and GPU metrics without waiting for the final report.</p></article><article class="feature-card"><span class="feature-number">02 / CORE DETAIL</span><div class="mini-core-viz" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div><h3>Find the idle cores</h3><p>See how work was distributed across cores and nodes, beyond a single average.</p></article><article class="feature-card"><span class="feature-number">03 / NEXT RUN</span><div class="advice-viz" aria-hidden="true"><span>RESOURCE ADVICE</span><strong>Right-size your next request <b>↗</b></strong><i></i></div><h3>Get practical advice</h3><p>Turn usage into a better resource request, with NCI charging rules in mind.</p></article><article class="feature-card"><span class="feature-number">04 / COMPARE</span><div class="compare-viz" aria-hidden="true"><span>RUN A <i></i></span><span>RUN B <i></i></span></div><h3>Compare two runs</h3><p>Check whether a code or configuration change made a measurable difference.</p></article></div></div></section>
-
-      <section class="section setup-section" id="getting-started" aria-labelledby="setup-title"><div class="wrap"><div class="section-heading setup-heading"><div><p class="section-kicker">A SHORT PATH TO YOUR FIRST CHART</p><h2 id="setup-title">Set it up once.<br /><span>Learn from every run.</span></h2></div><p>The app reads telemetry files over your SSH connection or a local mount. It does not submit, cancel or modify jobs.</p></div><div class="steps"><article class="step"><span class="step-num">01</span><div><h3>Collect telemetry in your job</h3><p>Load <a href="/logger-rs/">logger-rs</a> and mark the workload you want measured in your PBS script.</p></div><span class="step-arrow" aria-hidden="true">↗</span></article><article class="step"><span class="step-num">02</span><div><h3>Connect the desktop app</h3><p>Download HPC Dashboard and add a profile for the directory where your logs land.</p></div><span class="step-arrow" aria-hidden="true">↗</span></article><article class="step"><span class="step-num">03</span><div><h3>Open a job and explore</h3><p>Inspect live charts, read the finished summary, compare runs and plan your next request.</p></div><span class="step-arrow" aria-hidden="true">↗</span></article></div><div class="code-card"><div class="code-title"><span><i></i><i></i><i></i></span><strong>job.pbs</strong><a href="/docs/collecting-telemetry/">Full setup guide <span aria-hidden="true">↗</span></a></div><pre><code><span class="code-muted"># Inside your PBS job script</span>
-<span class="code-accent">module load</span> logger-rs
-<span class="code-accent">source</span> logger-rs.sh
-
-<span class="code-accent">telemetry_start</span>
+telemetry_start
 mpirun -np "$PBS_NCPUS" ./my_model
-<span class="code-accent">telemetry_stop</span></code></pre><p>Module paths and storage directives vary by site. See the guide before your first run.</p></div></div></section>
+telemetry_stop</code></pre><p>Module paths and storage directives depend on your site.</p></div></div></section>
 
-      <section class="section logger-feature-section" id="logger-rs" aria-labelledby="logger-feature-title"><div class="wrap logger-feature-grid"><div><p class="section-kicker">THE COLLECTOR BEHIND THE CHARTS</p><h2 id="logger-feature-title">Start with <span>logger-rs.</span></h2><p>logger-rs records what happens inside your HPC job and writes the telemetry that HPC Dashboard displays. Built for PBS systems today, with SLURM support in development. Use the shared Gadi module or download the Linux package for your own cluster.</p><div class="hero-actions"><a class="button button-primary" href="/logger-rs/#download">Get logger-rs <span aria-hidden="true">↗</span></a><a class="button button-secondary" href="/logger-rs/docs/">Read logger-rs docs <span aria-hidden="true">↗</span></a></div></div><div class="logger-feature-facts"><div><strong>01</strong><span>Measure a chosen part of your job</span></div><div><strong>02</strong><span>Collect per-node CPU, memory and I/O</span></div><div><strong>03</strong><span>Open the results in HPC Dashboard</span></div></div></div></section>
+      <section class="section downloads-section" aria-labelledby="downloads-title"><div class="wrap"><p class="eyebrow">GET THE TOOLS</p><h2 id="downloads-title">Download, read, try.</h2><div class="download-list"><div><span class="row-number">A</span><div><h3>HPC Dashboard</h3><p>The desktop application for viewing and comparing jobs.</p></div><a class="text-link" href="https://github.com/greensh16/hpc_dashboard_public/releases/latest">Download app <span aria-hidden="true">↗</span></a><a class="text-link" href="/docs/">Documentation <span aria-hidden="true">↗</span></a></div><div><span class="row-number">B</span><div><h3>logger-rs</h3><p>The Linux collector and shell library for HPC jobs.</p></div><a class="text-link" href="/logger-rs/#download">Download package <span aria-hidden="true">↗</span></a><a class="text-link" href="/logger-rs/docs/">Documentation <span aria-hidden="true">↗</span></a></div></div></div></section>
 
-      <section class="section cta-section" aria-labelledby="cta-title"><div class="wrap cta-inner"><div><p class="section-kicker">READY TO SEE THE FULL PICTURE?</p><h2 id="cta-title">Make the next run<br /><em>a better one.</em></h2><p>Download the latest release, then follow the quick setup guide to start collecting useful evidence from your jobs.</p><div class="hero-actions"><a class="button button-primary" href="https://github.com/greensh16/hpc_dashboard_public/releases/latest">Download for your platform <span aria-hidden="true">↗</span></a><a class="button button-secondary" href="/docs/">Read the documentation <span aria-hidden="true">↗</span></a></div><p class="cta-note">Available for macOS, Windows and Linux. Check the installation guide for current signing notes.</p></div><div class="cta-orbit" aria-hidden="true"><span class="orbit orbit-one"></span><span class="orbit orbit-two"></span><span class="orbit orbit-three"></span><span class="orbit-centre"><img class="orbit-logo" src="logo-social.png" alt="" /></span><i class="orbit-dot dot-one"></i><i class="orbit-dot dot-two"></i><i class="orbit-dot dot-three"></i></div></div></section>
-      <section class="section collaborate-section" id="collaborate" aria-labelledby="collaborate-title">
-        <div class="wrap collaborate-grid">
-          <div class="collaborate-intro">
-            <p class="section-kicker">WORK WITH ME</p>
-            <h2 id="collaborate-title">Bring these tools to <span>your platform.</span></h2>
-            <p>Interested in using HPC Dashboard and logger-rs with your HPC system or cloud environment? I welcome conversations about adapting the tools to your infrastructure and your users' needs.</p>
-            <a class="button button-primary" href="mailto:sam.green@unsw.edu.au?subject=HPC%20Dashboard%20integration">Discuss an integration <span aria-hidden="true">↗</span></a>
-            <p class="collaborate-email">Or email <a href="mailto:sam.green@unsw.edu.au">sam.green@unsw.edu.au</a></p>
-          </div>
-          <div class="collaborate-options">
-            <div class="collaborate-option">
-              <span>ACADEMIC FACILITIES</span>
-              <p>Adaptations for academic research facilities can be provided as an in-kind contribution, subject to scope and availability.</p>
-            </div>
-            <div class="collaborate-option">
-              <span>COMMERCIAL PLATFORMS</span>
-              <p>For commercial integrations, we can discuss the scope, compensation, and any required agreements before work begins.</p>
-            </div>
-          </div>
-        </div>
-      </section>
+      <section class="section collaborate-section" id="collaborate" aria-labelledby="collaborate-title"><div class="wrap collaborate-grid"><div><p class="eyebrow">COLLABORATE</p><h2 id="collaborate-title">Bring these tools to your system.</h2><p>If you would like HPC Dashboard and logger-rs adapted for your HPC facility or cloud environment, contact me to discuss the requirements.</p><a class="button button-primary" href="mailto:sam.green@unsw.edu.au?subject=HPC%20Dashboard%20integration">Email Sam Green <span aria-hidden="true">↗</span></a><p class="contact-email"><a href="mailto:sam.green@unsw.edu.au">sam.green@unsw.edu.au</a></p></div><div class="collaborate-terms"><p><strong>Academic facilities</strong><br />Adaptation work may be provided as an in-kind contribution, depending on scope and availability.</p><p><strong>Commercial platforms</strong><br />We can discuss scope, compensation and any required agreements before work begins.</p></div></div></section>
     </main>
 
-    <footer class="footer"><div class="wrap"><div class="footer-top"><div><a class="brand" href="#top"><img class="brand-icon" src="logo.png" alt="" aria-hidden="true" /><span>HPC<span class="brand-light"> Dashboard</span></span></a><p>See what your jobs actually used.</p></div><div class="footer-links"><a href="https://github.com/greensh16/hpc_dashboard_public/releases/latest">Downloads</a><a href="/docs/">Documentation</a><a href="#collaborate">Collaborate</a><a href="https://github.com/greensh16/hpc_dashboard_public/issues">Report an issue</a><a href="/logger-rs/">logger-rs</a></div></div><div class="footer-bottom"><span>© 2026 Sam Green · Apache 2.0</span><span>Developed at the ARC Centre of Excellence for 21st Century Weather, UNSW Sydney, with support from NCI.</span></div></div></footer>
+    <footer class="footer"><div class="wrap footer-main"><a class="brand" href="/"><img src="/logo.png" alt="" /><span>HPC Dashboard</span></a><nav aria-label="Footer navigation"><a href="/docs/">Dashboard docs</a><a href="/logger-rs/">logger-rs</a><a href="/logger-rs/docs/">logger-rs docs</a><a href="https://github.com/greensh16/hpc_dashboard_public/issues">Report an issue</a></nav></div><div class="wrap footer-bottom"><span>© 2026 Sam Green · Apache 2.0</span><span>Developed at the ARC Centre of Excellence for 21st Century Weather, UNSW Sydney, with support from NCI.</span></div></footer>
   </body>
 </html>
