@@ -7,7 +7,7 @@
     <meta name="description" content="HPC Dashboard and logger-rs show what your HPC jobs actually used. Inspect live and completed runs, compare results, and plan better resource requests." />
     <meta property="og:type" content="website" />
     <meta property="og:title" content="HPC Dashboard — understand what your jobs used" />
-    <meta property="og:description" content="Open source tools for collecting and understanding HPC job telemetry." />
+    <meta property="og:description" content="Tools for collecting and understanding HPC job telemetry." />
     <meta property="og:url" content="https://hpc-dash.au/" />
     <meta property="og:image" content="https://hpc-dash.au/logo-social.png" />
     <link rel="canonical" href="https://hpc-dash.au/" />
@@ -24,6 +24,7 @@
         <nav class="nav" aria-label="Main navigation">
           <a href="#how-it-works">How it works</a>
           <a href="#inside">Inside the app</a>
+          <a href="#next-release">Next release</a>
           <a href="/logger-rs/">logger-rs</a>
           <a href="/docs/">Documentation</a>
         </nav>
@@ -36,18 +37,18 @@
         <div class="wrap">
           <div class="hero-intro">
             <div>
-              <p class="eyebrow">OPEN SOURCE TOOLS FOR RESEARCH COMPUTING</p>
+              <p class="eyebrow">TOOLS FOR RESEARCH COMPUTING</p>
               <h1 id="hero-title">Know what your jobs <span>actually used.</span></h1>
             </div>
             <div class="hero-aside">
               <p>HPC Dashboard turns job telemetry into a clear account of where your CPU time, memory, storage and GPUs went. Inspect a run while it is active, or return to it when you are planning the next one.</p>
               <div class="hero-actions"><a class="button button-primary" href="https://github.com/greensh16/hpc_dashboard_public/releases/latest">Download the desktop app <span aria-hidden="true">↗</span></a><a class="text-link" href="#how-it-works">How it works <span aria-hidden="true">↓</span></a></div>
-              <p class="small-note">macOS, Windows and Linux · logger-rs validated on Gadi and Setonix</p>
+              <p class="small-note">Current public desktop release: v0.7.1 · macOS, Windows and Linux · logger-rs validated on Gadi and Setonix</p>
             </div>
           </div>
           <figure class="primary-screen">
             <a href="/images/dashboard-summary.png" aria-label="Open the full dashboard summary screenshot"><img src="/images/dashboard-summary.png" width="3016" height="1894" alt="HPC Dashboard whole-run summary showing CPU efficiency, walltime, node coverage and resource totals." fetchpriority="high" /></a>
-            <figcaption><span>01 / The dashboard</span><span>Whole-run summary from a recorded research job · open full size ↗</span></figcaption>
+            <figcaption><span>01 / The dashboard</span><span>Current release screenshot · whole-run summary from a recorded job · open full size ↗</span></figcaption>
           </figure>
         </div>
       </section>
@@ -66,7 +67,19 @@
       <section class="section inside-section" id="inside" aria-labelledby="inside-title">
         <div class="wrap">
           <div class="section-heading"><div><p class="eyebrow">INSIDE THE APPLICATION</p><h2 id="inside-title">The details behind a useful answer.</h2></div><p>From whole-run totals to individual GPUs, the dashboard keeps the underlying measurements in view.</p></div>
-          <figure class="screen-figure"><div class="screen-image"><a href="/images/dashboard-gpu.png" aria-label="Open the full GPU detail screenshot"><img src="/images/dashboard-gpu.png" width="3016" height="1900" loading="lazy" alt="HPC Dashboard GPU view showing utilisation, VRAM, temperature and power for four GPUs on one node." /></a></div><figcaption><strong>Inspect each GPU</strong><span>See per-device measurements and how they change through a run. Open full size ↗</span></figcaption></figure>
+          <figure class="screen-figure"><div class="screen-image"><a href="/images/dashboard-gpu.png" aria-label="Open the full GPU detail screenshot"><img src="/images/dashboard-gpu.png" width="3016" height="1900" loading="lazy" alt="HPC Dashboard GPU view showing utilisation, VRAM, temperature and power for four GPUs on one node." /></a></div><figcaption><strong>Inspect each GPU</strong><span>Current release screenshot · per-device measurements across a run · open full size ↗</span></figcaption></figure>
+        </div>
+      </section>
+
+      <section class="section next-section" id="next-release" aria-labelledby="next-title">
+        <div class="wrap">
+          <div class="section-heading"><div><p class="eyebrow">UPCOMING DESKTOP RELEASE</p><h2 id="next-title">From measuring jobs to working with them.</h2></div><p>Version 0.9.0 is in preparation. These features are in the new build and are not yet part of the public v0.7.1 download.</p></div>
+          <div class="next-grid">
+            <article class="next-card"><div class="feature-placeholder" aria-label="Run Explorer screenshot to be added"><span>01 / RUN EXPLORER</span><small>Screenshot to follow</small></div><h3>Find a run worth comparing.</h3><p>Filter completed jobs, pin a baseline, compare resource use, and follow a recorded GitHub commit back to its code.</p><a class="text-link" href="/docs/run-explorer/">Explore the workflow <span aria-hidden="true">↗</span></a></article>
+            <article class="next-card"><div class="feature-placeholder" aria-label="Gadi budget screenshot to be added"><span>02 / GADI STATUS</span><small>Screenshot to follow</small></div><h3>Plan against a real allocation.</h3><p>Check Gadi jobs and project accounting, then forecast how planned workloads could use the quarter's remaining service units.</p><a class="text-link" href="/docs/gadi-status-and-budgets/">Read the planning guide <span aria-hidden="true">↗</span></a></article>
+            <article class="next-card"><div class="feature-placeholder" aria-label="Interactive jobs screenshot to be added"><span>03 / INTERACTIVE</span><small>Screenshot to follow</small></div><h3>Work on the compute node.</h3><p>Open an SSH shell, request an interactive PBS or Slurm allocation, and launch a managed Jupyter session through the dashboard.</p><a class="text-link" href="/docs/interactive-jobs-and-jupyter/">See interactive features <span aria-hidden="true">↗</span></a></article>
+          </div>
+          <p class="next-note">The iPad build remains a development preview; the public download links above are for the desktop app.</p>
         </div>
       </section>
 
